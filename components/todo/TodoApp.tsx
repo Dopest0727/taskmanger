@@ -79,7 +79,7 @@ function TodoApp() {
         onEdit={editTodo}
       />
       {todos.length === 0 && (
-        <p className="empty-message text-center text-gray-500 mt-4">
+        <p className="empty-message text-center text-gray-500 mt-10 mb-5">
           No tasks yet! Add above ✏️
         </p>
       )}
