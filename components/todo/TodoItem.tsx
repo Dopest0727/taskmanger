@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface Todo {
   id: number;
   text: string;
@@ -8,15 +10,27 @@ interface TodoItemProps {
   todo: Todo;
   onToggle: () => void;
   onDelete: () => void;
+  onEdit: (id: number, newText: string) => void;
 }
 
-function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
+function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState(todo.text);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      onEdit(todo.id, editText.trim());
+      setIsEditing(false);
+    } else if (e.key === "Escape") {
+      setEditText(todo.text);
+      setIsEditing(false);
+    }
+  };
   return (
     <div
-      className={`todo-item flex items-center justify-between p-3 rounded-lg border transition-all ${
+      className={`todo-item flex items-center justify-between p-3 rounded-lg border ${
         todo.completed
-          ? "bg-gray-100 border-gray-300 line-through opacity-70 dark:bg-gray-700 dark:border-gray-600"
-          : "bg-white border-gray-200 hover:border-indigo-400 dark:bg-gray-800 dark:border-gray-700"
+          ? "bg-gray-100 dark:bg-gray-700 line-through"
+          : "bg-white dark:bg-gray-800"
       }`}
     >
       <div className="flex items-center gap-3">
@@ -24,14 +38,33 @@ function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
           type="checkbox"
           checked={todo.completed}
           onChange={onToggle}
-          className="todo-checkbox w-4 h-4 accent-indigo-500"
+          className="w-4 h-4 accent-indigo-500"
         />
-        <span className="text-base">{todo.text}</span>
+
+        {isEditing ? (
+          <input
+            type="text"
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onBlur={() => {
+              onEdit(todo.id, editText.trim());
+              setIsEditing(false);
+            }}
+            className="border-b border-gray-300 focus:outline-none dark:bg-gray-700 dark:border-gray-500"
+            autoFocus
+          />
+        ) : (
+          <span
+            onDoubleClick={() => setIsEditing(true)}
+            className="cursor-pointer"
+          >
+            {todo.text}
+          </span>
+        )}
       </div>
-      <button
-        className="delete-button text-red-500 hover:text-red-700 transition-transform hover:scale-110"
-        onClick={onDelete}
-      >
+
+      <button onClick={onDelete} className="text-red-500 hover:text-red-700">
         ✕
       </button>
     </div>
