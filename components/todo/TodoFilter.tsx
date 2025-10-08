@@ -20,7 +20,7 @@ const TodoFilter: React.FC<TodoFilterProps> = ({ filter, setFilter }) => {
         ${
           filter === f
             ? "bg-blue-600 text-white border-blue-600"
-            : "bg-gray-200 text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700"
+            : "bg-white text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700"
         } 
         first:rounded-l-lg last:rounded-r-lg`}
         >
