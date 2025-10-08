@@ -44,12 +44,16 @@ function TodoApp() {
   };
 
   return (
-    <div className="todo-container">
-      <h1>Maurii Todo</h1>
+    <div className="todo-container max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-sm bg-white dark:bg-gray-800 transition-all">
+      <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight">
+        Maurii Todo
+      </h1>
       <TodoForm onAdd={addTodo} />
       <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
       {todos.length === 0 && (
-        <p className="empty-message">No tasks yet! Add above</p>
+        <p className="empty-message text-center text-gray-500 mt-4">
+          No tasks yet! Add above ✏️
+        </p>
       )}
     </div>
   );

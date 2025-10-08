@@ -14,7 +14,7 @@ interface TodoListProps {
 
 function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
   return (
-    <div className="todo-list">
+    <div className="todo-list space-y-2">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
