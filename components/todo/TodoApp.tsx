@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
 import { Todo } from "@/types/todo";
+import { filterTodos, FilterType } from "@/lib/TodoFilters";
+import TodoForm from "./TodoForm";
+import TodoFilter from "./TodoFilter";
+import TodoList from "./TodoList";
 
 function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -14,19 +16,13 @@ function TodoApp() {
     }
   });
 
-  const [filter, setFilter] = useState<"all" | "inclomplete" | "completed">(
-    "all"
-  );
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "all") return true;
-    if (filter === "completed") return todo.completed;
-    return !todo.completed;
-  });
-
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  {
+    /*================== ADD ==================*/
+  }
   const addTodo = (text: string): void => {
     if (text.trim() === "") return;
     setTodos((prev) => [
@@ -35,6 +31,9 @@ function TodoApp() {
     ]);
   };
 
+  {
+    /*================== TOGGLE ==================*/
+  }
   const toggleTodo = (id: number): void => {
     setTodos((prev) =>
       prev.map((todo) =>
@@ -43,10 +42,22 @@ function TodoApp() {
     );
   };
 
+  {
+    /*================== DELETE ==================*/
+  }
   const deleteTodo = (id: number): void => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };
 
+  {
+    /*================== FILTER ==================*/
+  }
+  const [filter, setFilter] = useState<FilterType>("all");
+  const filteredTodos = filterTodos(todos, filter);
+
+  {
+    /*================== EDIT ==================*/
+  }
   const editTodo = (id: number, newText: string) => {
     if (newText === "") return;
     setTodos((prev) =>
@@ -60,21 +71,7 @@ function TodoApp() {
         Maurii Todo
       </h1>
       <TodoForm onAdd={addTodo} />
-      <div className="flex justify-center gap-4 mt-2">
-        {["all", "incomplete", "completed"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setFilter(tab as typeof filter)}
-            className={`px-3 py-1 rounded ${
-              filter === tab
-                ? "bg-indigo-500 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            }`}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
-      </div>
+      <TodoFilter filter={filter} setFilter={setFilter} />
       <TodoList
         todos={filteredTodos}
         onToggle={toggleTodo}
