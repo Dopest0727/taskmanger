@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import { Todo } from "@/types/todo";
 
 function TodoApp() {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -17,6 +12,15 @@ function TodoApp() {
       console.error("Failed to parse todos from localStorage");
       return [];
     }
+  });
+
+  const [filter, setFilter] = useState<"all" | "inclomplete" | "completed">(
+    "all"
+  );
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "all") return true;
+    if (filter === "completed") return todo.completed;
+    return !todo.completed;
   });
 
   useEffect(() => {
@@ -44,6 +48,7 @@ function TodoApp() {
   };
 
   const editTodo = (id: number, newText: string) => {
+    if (newText === "") return;
     setTodos((prev) =>
       prev.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
     );
@@ -55,8 +60,23 @@ function TodoApp() {
         Maurii Todo
       </h1>
       <TodoForm onAdd={addTodo} />
+      <div className="flex justify-center gap-4 mt-2">
+        {["all", "incomplete", "completed"].map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setFilter(tab as typeof filter)}
+            className={`px-3 py-1 rounded ${
+              filter === tab
+                ? "bg-indigo-500 text-white"
+                : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+            }`}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
       <TodoList
-        todos={todos}
+        todos={filteredTodos}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
         onEdit={editTodo}

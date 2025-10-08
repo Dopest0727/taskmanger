@@ -1,17 +1,5 @@
 import TodoItem from "./TodoItem";
-
-interface Todos {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
-interface TodoListProps {
-  todos: Todos[];
-  onToggle: (id: number) => void;
-  onDelete: (id: number) => void;
-  onEdit: (id: number, newText: string) => void;
-}
+import { TodoListProps } from "@/types/todo";
 
 function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
   return (
