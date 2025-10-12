@@ -8,25 +8,25 @@ const PomodoroControls: React.FC<PomodoroControlsProps> = ({
   onReset,
 }) => {
   return (
-    <div className="flex justify-center gap-4 mt-4">
+    <div className="flex justify-center gap-3 mt-4">
       {isRunning ? (
         <button
           onClick={onPause}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 active:scale-95 transition-transform"
+          className="btn-base bg-red-500 text-white rounded hover:bg-red-600 active:scale-95"
         >
           Pause
         </button>
       ) : (
         <button
           onClick={onStart}
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:scale-95 transition-transform"
+          className="btn-base bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 rounded hover:bg-stone-700 dark:hover:bg-stone-200 active:scale-95"
         >
           Start
         </button>
       )}
       <button
         onClick={onReset}
-        className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500 active:scale-95 transition-transform"
+        className="btn-base bg-stone-200 dark:bg-stone-700 dark:text-stone-100 rounded hover:bg-stone-300 dark:hover:bg-stone-600 active:scale-95"
       >
         Reset
       </button>

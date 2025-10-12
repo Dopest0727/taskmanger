@@ -20,7 +20,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
     <div
       className={`todo-item flex items-center justify-between p-3 rounded-md border-base ${
         todo.completed
-          ? "bg-white line-through opacity-60"
+          ? "bg-white dark:bg-stone-900 line-through opacity-60"
           : "bg-white dark:bg-stone-800"
       }`}
     >
