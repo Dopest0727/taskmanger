@@ -18,19 +18,18 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
 
   return (
     <div
-      className={`todo-item flex items-center justify-between p-3 rounded-lg border border-gray-300 
-        ${
-          todo.completed
-            ? "bg-gray-100 dark:bg-gray-700 line-through"
-            : "bg-white dark:bg-gray-800"
-        }`}
+      className={`todo-item flex items-center justify-between p-3 rounded-md border-base ${
+        todo.completed
+          ? "bg-white line-through opacity-60"
+          : "bg-white dark:bg-stone-800"
+      }`}
     >
       <div className="flex items-center gap-3 flex-grow">
         <input
           type="checkbox"
           checked={todo.completed}
           onChange={onToggle}
-          className="w-4 h-4 accent-indigo-500"
+          className="w-4 h-4 accent-gray-300"
         />
 
         {isEditing ? (
@@ -54,16 +53,15 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
       <div className="flex items-center gap-2 ml-3">
         <button
           onClick={() => setIsEditing(true)}
-          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors duration-200"
+          className="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded transition-colors duration-200"
         >
-          <PencilSquareIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+          <PencilSquareIcon className="w-5 h-5 text-stone-700 dark:text-stone-200" />
         </button>
-
         <button
           onClick={onDelete}
-          className="p-1 hover:bg-red-100 dark:hover:bg-red-700 rounded transition-colors duration-200"
+          className="p-1 hover:bg-red-200 dark:hover:bg-red-700 rounded transition-colors duration-200"
         >
-          <TrashIcon className="w-5 h-5 text-red-600 dark:text-red-400" />
+          <TrashIcon className="w-5 h-5 text-stone-700 dark:text-red-400" />
         </button>
       </div>
     </div>

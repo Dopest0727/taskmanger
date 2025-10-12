@@ -10,17 +10,20 @@ function TodoForm({ onAdd }: TodoFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="todo-form flex mb-4">
+    <form
+      onSubmit={handleSubmit}
+      className="todo-form flex mb-4 border border-base rounded-md"
+    >
       <input
         type="text"
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
         placeholder="Add new todo"
-        className="todo-input flex-grow p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-400"
+        className="flex-grow input-base border-none rounded-l-md"
       />
       <button
-        className="add-button px-4 py-2 bg-indigo-500 text-white font-medium rounded-r-lg hover:bg-indigo-600 active:scale-95 transition-transform"
         type="submit"
+        className="btn-base hover:bg-stone-900 dark:hover:bg-stone-100 dark:hover:text-stone-800 hover:text-stone-100 rounded-r-md"
       >
         Add
       </button>

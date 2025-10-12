@@ -66,8 +66,8 @@ function TodoApp() {
   };
 
   return (
-    <div className="todo-container max-w-md mx-auto mt-10 p-6 rounded-2xl shadow-sm bg-white dark:bg-gray-800 transition-all">
-      <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight">
+    <div className="todo-container app-container">
+      <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight text-gray-900 dark:text-stone-100">
         Maurii Todo
       </h1>
       <TodoForm onAdd={addTodo} />
@@ -79,7 +79,7 @@ function TodoApp() {
         onEdit={editTodo}
       />
       {todos.length === 0 && (
-        <p className="empty-message text-center text-gray-500 mt-10 mb-5">
+        <p className="text-center text-gray-500 mt-10 mb-5 dark:text-stone-100">
           No tasks yet! Add above ✏️
         </p>
       )}
