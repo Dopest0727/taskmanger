@@ -1,9 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-
-interface NoteFormProps {
-  onAdd: (content: string) => void;
-}
+import { NoteFormProps } from "@/types/note";
 
 export default function NoteForm({ onAdd }: NoteFormProps) {
   const [newNote, setNewNote] = useState("");
@@ -33,7 +30,7 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
       />
       <button
         type="submit"
-        className="btn-base border-t border-gray-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 rounded-b-md hover:bg-stone-900 hover:text-white dark:hover:bg-stone-100 dark:hover:text-stone-900 transition-colors"
+        className="btn-base border-t border-gray-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 rounded-b-md bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 transition-colors"
       >
         Add Note
       </button>

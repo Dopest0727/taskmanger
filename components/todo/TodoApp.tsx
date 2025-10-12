@@ -80,7 +80,7 @@ function TodoApp() {
       />
       {todos.length === 0 && (
         <p className="text-center text-gray-500 mt-10 mb-5 dark:text-stone-100">
-          No tasks yet! Add above ✏️
+          Add a todo!
         </p>
       )}
     </div>

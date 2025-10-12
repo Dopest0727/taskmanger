@@ -2,12 +2,7 @@
 import { useState, useEffect } from "react";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
-
-export interface Note {
-  id: number;
-  content: string;
-  createdAt: string;
-}
+import { Note } from "@/types/note";
 
 export default function NotesApp() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -34,13 +29,21 @@ export default function NotesApp() {
   const deleteNote = (id: number) =>
     setNotes(notes.filter((note) => note.id !== id));
 
+  const editNote = (id: number, newContent: string) => {
+    setNotes((prev) =>
+      prev.map((note) =>
+        note.id === id ? { ...note, content: newContent } : note
+      )
+    );
+  };
+
   return (
     <div className="app-container">
       <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight">
         Maurii Notes
       </h1>
       <NoteForm onAdd={addNote} />
-      <NoteList notes={notes} onDelete={deleteNote} />
+      <NoteList notes={notes} onDelete={deleteNote} onEdit={editNote} />
     </div>
   );
 }

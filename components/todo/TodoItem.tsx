@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TodoItemProps } from "@/types/todo";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { Edit2, Trash2 } from "lucide-react";
 
 function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
@@ -55,13 +55,13 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
           onClick={() => setIsEditing(true)}
           className="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded transition-colors duration-200"
         >
-          <PencilSquareIcon className="w-5 h-5 text-stone-700 dark:text-stone-200" />
+          <Edit2 className="w-5 h-5 text-stone-700 dark:text-stone-200" />
         </button>
         <button
           onClick={onDelete}
           className="p-1 hover:bg-red-200 dark:hover:bg-red-700 rounded transition-colors duration-200"
         >
-          <TrashIcon className="w-5 h-5 text-stone-700 dark:text-red-400" />
+          <Trash2 className="w-5 h-5 text-stone-700 dark:text-red-400" />
         </button>
       </div>
     </div>
