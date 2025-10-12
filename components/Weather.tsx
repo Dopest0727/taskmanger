@@ -12,15 +12,15 @@ import {
 } from "lucide-react";
 
 interface WeatherData {
-  name: string;
-  main: {
-    temp: number;
-    feels_like: number;
-    humidity: number;
+  name?: string;
+  main?: {
+    temp?: number;
+    feels_like?: number;
+    humidity?: number;
   };
-  weather: { description: string }[];
-  wind: { speed: number };
-  sys: { country: string };
+  weather?: { description?: string }[];
+  wind?: { speed?: number };
+  sys?: { country?: string };
 }
 
 export default function Weather() {
@@ -44,6 +44,12 @@ export default function Weather() {
           );
           if (!res.ok) throw new Error("Weather fetch failed");
           const data = await res.json();
+
+          // Check if API actually returned valid data
+          if (!data || !data.main || !data.sys) {
+            throw new Error("Incomplete weather data");
+          }
+
           setWeather(data);
         } catch (err) {
           console.error("Weather fetch failed:", err);
@@ -59,11 +65,12 @@ export default function Weather() {
     );
   }, []);
 
-  const getWeatherIcon = (desc: string) => {
-    desc = desc.toLowerCase();
-    if (desc.includes("rain")) return <CloudRain size={96} />;
-    if (desc.includes("cloud")) return <Cloud size={96} />;
-    if (desc.includes("sun") || desc.includes("clear"))
+  const getWeatherIcon = (desc?: string) => {
+    if (!desc) return <Cloud size={96} />;
+    const lower = desc.toLowerCase();
+    if (lower.includes("rain")) return <CloudRain size={96} />;
+    if (lower.includes("cloud")) return <Cloud size={96} />;
+    if (lower.includes("sun") || lower.includes("clear"))
       return <Sun size={96} />;
     return <Cloud size={96} />;
   };
@@ -83,35 +90,44 @@ export default function Weather() {
         <div className="flex flex-col items-center justify-between h-full py-6 w-full text-center">
           {/* Location */}
           <div className="text-lg font-semibold text-stone-900 dark:text-stone-100">
-            {weather.name}, {weather.sys.country}
+            {weather.name ?? "Unknown location"}
+            {weather.sys?.country ? `, ${weather.sys.country}` : ""}
           </div>
 
           {/* Icon & Temp */}
           <div className="flex flex-col items-center justify-center flex-grow">
             <div className="text-stone-700 dark:text-stone-200 mb-3">
-              {getWeatherIcon(weather.weather[0].description)}
+              {getWeatherIcon(weather.weather?.[0]?.description)}
             </div>
             <div className="text-6xl font-bold text-stone-900 dark:text-stone-100">
-              {Math.round(weather.main.temp)}°C
+              {weather.main?.temp !== undefined
+                ? `${Math.round(weather.main.temp)}°C`
+                : "--"}
             </div>
             <p className="capitalize text-stone-600 dark:text-stone-400 mt-2">
-              {weather.weather[0].description}
+              {weather.weather?.[0]?.description ?? "N/A"}
             </p>
           </div>
 
           {/* Details */}
           <div className="flex justify-center gap-6 mt-4 text-sm text-stone-600 dark:text-stone-400">
             <div className="flex items-center gap-1">
-              <Thermometer size={24} />
-              Feels like {Math.round(weather.main.feels_like)}°C
+              <Thermometer size={16} />
+              {weather.main?.feels_like !== undefined
+                ? `Feels like ${Math.round(weather.main.feels_like)}°C`
+                : "--"}
             </div>
             <div className="flex items-center gap-1">
-              <Droplets size={24} />
-              {weather.main.humidity}%
+              <Droplets size={16} />
+              {weather.main?.humidity !== undefined
+                ? `${weather.main.humidity}%`
+                : "--"}
             </div>
             <div className="flex items-center gap-1">
-              <Wind size={24} />
-              {Math.round(weather.wind.speed)} m/s
+              <Wind size={16} />
+              {weather.wind?.speed !== undefined
+                ? `${Math.round(weather.wind.speed)} m/s`
+                : "--"}
             </div>
           </div>
         </div>
