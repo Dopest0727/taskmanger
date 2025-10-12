@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
+import Calendar from "./calendar/Calendar";
 
 export default function Navigation() {
   const [darkMode, setDarkMode] = useState(false);
@@ -18,7 +19,7 @@ export default function Navigation() {
       <h1 className="text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100">
         by Maurii.
       </h1>
-
+      <Calendar />
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="p-2 rounded-md border border-gray-300 dark:border-stone-600 hover:bg-gray-100 dark:hover:bg-stone-800 transition-colors"
