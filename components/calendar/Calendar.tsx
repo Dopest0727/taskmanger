@@ -30,7 +30,7 @@ const Calendar: React.FC<CalendarProps> = () => {
 
   return (
     <div className="text-center">
-      <div className="text-xs text-stone-500 dark:text-stone-400 mb-1">
+      <div className="text-xs text-stone-500 dark:text-stone-400 mb-1 capitalize">
         {dayOfWeek}
       </div>
       <div className="text-sm font-medium text-stone-900 dark:text-stone-100">

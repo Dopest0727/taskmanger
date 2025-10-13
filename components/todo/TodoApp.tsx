@@ -66,7 +66,7 @@ function TodoApp() {
   };
 
   return (
-    <div className="todo-container app-container">
+    <div className="todo-container app-container-2">
       <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight text-gray-900 dark:text-stone-100">
         Maurii Todo
       </h1>

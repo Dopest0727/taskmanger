@@ -54,13 +54,6 @@ const PomodoroApp = () => {
       </h1>
 
       <PomodoroTimer timeLeft={timeLeft} isWorkSession={isWorkSession} />
-      <div className="mt-4">
-        <PomodoroProgress
-          timeLeft={timeLeft}
-          totalTime={isWorkSession ? workDuration : breakDuration}
-        />
-      </div>
-
       <PomodoroSettings
         workDuration={workDuration / 60}
         breakDuration={breakDuration / 60}
@@ -72,6 +65,10 @@ const PomodoroApp = () => {
           setBreakDuration(minutes * 60);
           if (!isWorkSession) setTimeLeft(minutes * 60);
         }}
+      />
+      <PomodoroProgress
+        timeLeft={timeLeft}
+        totalTime={isWorkSession ? workDuration : breakDuration}
       />
       <PomodoroControls
         isRunning={isRunning}

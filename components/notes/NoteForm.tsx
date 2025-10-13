@@ -20,7 +20,7 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col mb-4">
+    <form onSubmit={handleSubmit} className="flex h-25 flex-col mb-3">
       <textarea
         ref={textareaRef}
         value={newNote}

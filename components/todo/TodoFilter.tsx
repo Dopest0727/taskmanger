@@ -11,7 +11,7 @@ const TodoFilter: React.FC<TodoFilterProps> = ({ filter, setFilter }) => {
   const filters: FilterType[] = ["all", "completed", "uncompleted"];
 
   return (
-    <div className="flex mb-4 w-full border-base max-w-md mx-auto rounded-md">
+    <div className="flex mb-4 w-full max-w-md mx-auto rounded-md">
       {filters.map((f) => (
         <button
           key={f}
