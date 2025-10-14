@@ -117,15 +117,15 @@ export default function Weather() {
         {/* Temperature Details */}
         <div className="flex flex-wrap justify-center gap-6 text-sm">
           <div className="flex items-center gap-1">
-            <Thermometer size={20} />
+            <Thermometer size={22} />
             Feels {Math.round(weather.main.feels_like)}°C
           </div>
           <div className="flex items-center gap-1">
-            <ArrowUp size={20} />
+            <ArrowUp size={22} />
             High {Math.round(weather.main.temp_max)}°C
           </div>
           <div className="flex items-center gap-1">
-            <ArrowDown size={20} />
+            <ArrowDown size={22} />
             Low {Math.round(weather.main.temp_min)}°C
           </div>
         </div>
@@ -133,11 +133,11 @@ export default function Weather() {
         {/* Humidity + Wind */}
         <div className="flex justify-evenly gap-8 text-sm">
           <div className="flex items-center gap-1">
-            <Droplets size={20} />
+            <Droplets size={22} />
             {weather.main.humidity}%
           </div>
           <div className="flex items-center gap-1">
-            <Wind size={20} />
+            <Wind size={22} />
             {Math.round(weather.wind.speed)} m/s
           </div>
         </div>
@@ -145,11 +145,11 @@ export default function Weather() {
         {/* Sunrise / Sunset */}
         <div className="flex justify-evenly gap-8 text-sm">
           <div className="flex items-center gap-1">
-            <Sunrise size={20} />
+            <Sunrise size={22} />
             {formatTime(weather.sys.sunrise)}
           </div>
           <div className="flex items-center gap-1">
-            <Sunset size={20} />
+            <Sunset size={22} />
             {formatTime(weather.sys.sunset)}
           </div>
         </div>

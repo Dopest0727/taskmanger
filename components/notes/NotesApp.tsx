@@ -38,7 +38,7 @@ export default function NotesApp() {
   };
 
   return (
-    <div className="app-container-2">
+    <div className="app-container flex flex-col items-center justify-start text-primary">
       <h1 className="text-3xl font-semibold mb-6 text-center tracking-tight">
         Maurii Notes
       </h1>

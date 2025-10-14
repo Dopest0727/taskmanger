@@ -15,23 +15,25 @@ export default function NoteForm({ onAdd }: NoteFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAdd(newNote);
+    if (!newNote.trim()) return;
+    onAdd(newNote.trim());
     setNewNote("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex h-25 flex-col mb-3">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col w-full max-w-md mb-4"
+    >
       <textarea
         ref={textareaRef}
         value={newNote}
         onChange={(e) => setNewNote(e.target.value)}
-        placeholder="Write a note..."
-        className="input-base resize-none overflow-y-auto rounded-t-md h-24"
+        placeholder="Add new note"
+        className="input-accent-note resize-none overflow-y-auto rounded-t-md p-3"
+        rows={4}
       />
-      <button
-        type="submit"
-        className="btn-base border-t border-gray-300 dark:border-stone-700 text-stone-900 dark:text-stone-100 rounded-b-md bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 transition-colors"
-      >
+      <button type="submit" className="btn-base-sm btn-accent rounded-b-md">
         Add Note
       </button>
     </form>

@@ -59,7 +59,13 @@ body {
 
 .input-accent-todo {
   @apply w-20 text-left rounded bg-stone-900 border border-stone-700 
-  text-stone-100 focus:outline-none focus:ring-1 focus:ring-red-500
+  text-stone-100 focus:outline-none 
+  light:bg-white light:text-stone-500 light:border-stone-300;
+}
+
+.input-accent-note {
+  @apply text-left w-full h-20 bg-stone-900 border border-stone-700 
+  text-stone-100 focus:outline-none 
   light:bg-white light:text-stone-500 light:border-stone-300;
 }
 /* ─────────── Buttons ─────────── */
