@@ -8,15 +8,9 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
   onChangeBreak,
 }) => {
   return (
-    <div
-      className="flex flex-col gap-4 p-4 mt-4 rounded-md 
-      bg-stone-800 border border-stone-700 shadow-md transition-all light:bg-white light:border-stone-300"
-    >
+    <div className="card-base flex flex-col card-light gap-4 p-4 mt-4">
       <div className="flex items-center justify-between">
-        <label
-          htmlFor="work-duration"
-          className="text-stone-200 font-medium light:text-stone-500"
-        >
+        <label htmlFor="work-duration" className="text-label">
           Work Duration <span className="text-red-500">(min)</span>
         </label>
         <input
@@ -26,15 +20,12 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
           max={120}
           value={workDuration}
           onChange={(e) => onChangeWork(Number(e.target.value))}
-          className="pomodoro-settings"
+          className="input-accent"
         />
       </div>
 
       <div className="flex items-center justify-between">
-        <label
-          htmlFor="break-duration"
-          className="text-stone-200 font-medium light:text-stone-500"
-        >
+        <label htmlFor="break-duration" className="text-label">
           Break Duration <span className="text-red-500">(min)</span>
         </label>
         <input
@@ -44,7 +35,7 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
           max={60}
           value={breakDuration}
           onChange={(e) => onChangeBreak(Number(e.target.value))}
-          className="pomodoro-settings"
+          className="input-accent"
         />
       </div>
     </div>

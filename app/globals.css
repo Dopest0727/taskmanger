@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
+/* Light-mode variant */
 @custom-variant light (&:where(.light, .light *));
 
+/* ─────────── Base Theme ─────────── */
 body {
   @apply bg-stone-950 text-stone-100 light:bg-gray-50 light:text-stone-950
   transition-colors duration-300;
 }
 
+/* ─────────── Text Utilities ─────────── */
 .text-muted {
   @apply text-stone-400 light:text-stone-500;
 }
@@ -15,44 +18,61 @@ body {
   @apply text-stone-100 light:text-stone-900;
 }
 
+.text-label {
+  @apply text-sm text-stone-400 font-medium light:text-stone-500;
+}
+
+.text-timer {
+  @apply text-5xl font-bold text-stone-400 light:text-stone-800;
+}
+
+.text-timer-sm {
+  @apply text-4xl font-bold text-stone-400 light:text-stone-800;
+}
+
+/* ─────────── Containers ─────────── */
 .app-container {
-  @apply max-w-md mx-auto h-[450px] mt-10 p-6 rounded-md 
-  flex flex-col justify-center
+  @apply w-md mx-auto mt-10 p-6 rounded-md 
+  flex flex-col justify-evenly
   bg-stone-900 text-stone-100
   light:bg-white light:text-stone-950
   border border-stone-800 light:border-gray-300
   shadow-md transition-all;
 }
 
-.btn-base {
-  @apply px-4 py-2 transition-colors duration-200;
+/* Card block for widgets */
+.card-base {
+  @apply rounded-md bg-stone-800 border border-stone-700 shadow-md transition-all;
+}
+.card-light {
+  @apply light:bg-white light:border-stone-300;
 }
 
+/* ─────────── Inputs ─────────── */
+
+.input-accent,
 .pomodoro-settings {
-  @apply w-20 text-center rounded bg-stone-900 light:bg-white 
-  light:text-stone-500 light:border-stone-300 border border-stone-700 
-  text-stone-100 focus:outline-none focus:ring-1 focus:ring-red-500;
+  @apply w-20 text-center rounded bg-stone-900 border border-stone-700 
+  text-stone-100 focus:outline-none focus:ring-1 focus:ring-red-500
+  light:bg-white light:text-stone-500 light:border-stone-300;
 }
 
-/* Base app container (like TodoApp, PomodoroApp, etc.)
-.app-container {
-  @apply max-w-md mx-auto h-[500px] mt-10 p-6 
-  rounded-md bg-white flex flex-col justify-center
-  dark:bg-stone-900 shadow-md transition-all;
+/* ─────────── Buttons ─────────── */
+/* Base button style (define first so others can @apply it) */
+
+.btn-base {
+  @apply px-4 py-2 w-full rounded-md transition-all duration-200 active:scale-95;
 }
 
-.app-container-2 {
-  @apply max-w-md mx-auto mt-10 p-6 rounded-md min-h-[300px] bg-white dark:bg-stone-900 shadow-md transition-all;
+/* Variants */
+.btn-primary {
+  @apply bg-stone-800 text-stone-200 hover:bg-stone-700;
 }
 
-
-.input-base {
-  @apply px-2 py-2 border border-gray-300 focus:outline-none focus:ring-0
-    dark:bg-stone-800 dark:border-stone-600 dark:text-stone-100;
+.btn-accent {
+  @apply bg-red-500 text-stone-200 hover:bg-red-600;
 }
 
-
-
-.border-base {
-  @apply border border-gray-300 dark:border-stone-600;
-} */
+.btn-secondary {
+  @apply bg-stone-900 text-stone-100 light:bg-white light:text-stone-800 light:border light:border-stone-300 border border-stone-700 light:hover:bg-stone-100 hover:bg-stone-800;
+}
