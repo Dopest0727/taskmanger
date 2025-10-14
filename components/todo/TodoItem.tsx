@@ -2,7 +2,12 @@ import { useState } from "react";
 import { TodoItemProps } from "@/types/todo";
 import { Edit2, Trash2 } from "lucide-react";
 
-function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
+export default function TodoItem({
+  todo,
+  onToggle,
+  onDelete,
+  onEdit,
+}: TodoItemProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(todo.text);
 
@@ -18,10 +23,10 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
 
   return (
     <div
-      className={`todo-item flex items-center justify-between p-3 rounded-md border-base ${
+      className={`flex items-center card-light justify-between p-3 rounded-md card-base ${
         todo.completed
-          ? "bg-white dark:bg-stone-900 line-through opacity-60"
-          : "bg-white dark:bg-stone-800"
+          ? "bg-stone-800 light:bg-gray-100 line-through opacity-60"
+          : "bg-stone-900 light:bg-white"
       }`}
     >
       <div className="flex items-center gap-3 flex-grow">
@@ -29,7 +34,7 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
           type="checkbox"
           checked={todo.completed}
           onChange={onToggle}
-          className="w-4 h-4 accent-gray-300"
+          className="w-4 h-4 accent-red-500"
         />
 
         {isEditing ? (
@@ -42,30 +47,28 @@ function TodoItem({ todo, onToggle, onDelete, onEdit }: TodoItemProps) {
               onEdit(todo.id, editText.trim());
               setIsEditing(false);
             }}
-            className="flex-grow border-b border-gray-300 focus:outline-none dark:bg-gray-700 dark:border-gray-500 px-1 py-0.5 rounded"
+            className="flex-grow input-accent px-2 py-1 rounded focus:outline-none"
             autoFocus
           />
         ) : (
-          <span className="flex-grow">{todo.text}</span>
+          <span className="flex-grow text-primary">{todo.text}</span>
         )}
       </div>
 
       <div className="flex items-center gap-2 ml-3">
         <button
           onClick={() => setIsEditing(true)}
-          className="p-1 hover:bg-stone-200 dark:hover:bg-stone-700 rounded transition-colors duration-200"
+          className="p-1 hover:bg-stone-700 light:hover:bg-gray-200 rounded transition-colors duration-200"
         >
-          <Edit2 className="w-5 h-5 text-stone-700 dark:text-stone-200" />
+          <Edit2 className="w-5 h-5 text-stone-400 light:text-stone-900" />
         </button>
         <button
           onClick={onDelete}
-          className="p-1 hover:bg-red-200 dark:hover:bg-red-700 rounded transition-colors duration-200"
+          className="p-1 hover:bg-red-600 rounded transition-colors duration-200"
         >
-          <Trash2 className="w-5 h-5 text-stone-700 dark:text-red-400" />
+          <Trash2 className="w-5 h-5 text-red-500" />
         </button>
       </div>
     </div>
   );
 }
-
-export default TodoItem;

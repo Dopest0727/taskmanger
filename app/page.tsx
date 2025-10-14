@@ -9,6 +9,9 @@ export default function Home() {
       {/* Top Row */}
       <PomodoroPage />
       <Weather />
+      {/* Bottom Row */}
+      <TodoPage />
+      <NotePage />
     </main>
   );
 }

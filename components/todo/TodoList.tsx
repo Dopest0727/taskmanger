@@ -1,9 +1,14 @@
 import TodoItem from "./TodoItem";
 import { TodoListProps } from "@/types/todo";
 
-function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
+export default function TodoList({
+  todos,
+  onToggle,
+  onDelete,
+  onEdit,
+}: TodoListProps) {
   return (
-    <div className="todo-list space-y-2">
+    <div className="w-full max-w-md flex flex-col gap-2">
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
@@ -16,5 +21,3 @@ function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
     </div>
   );
 }
-
-export default TodoList;
