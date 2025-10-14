@@ -3,7 +3,7 @@
 @custom-variant light (&:where(.light, .light *));
 
 body {
-  @apply bg-stone-950 text-stone-100 light:bg-stone-100 light:text-stone-950
+  @apply bg-stone-950 text-stone-100 light:bg-gray-50 light:text-stone-950
   transition-colors duration-300;
 }
 
@@ -13,6 +13,25 @@ body {
 
 .text-primary {
   @apply text-stone-100 light:text-stone-900;
+}
+
+.app-container {
+  @apply max-w-md mx-auto h-[450px] mt-10 p-6 rounded-md 
+  flex flex-col justify-center
+  bg-stone-900 text-stone-100
+  light:bg-white light:text-stone-950
+  border border-stone-800 light:border-gray-300
+  shadow-md transition-all;
+}
+
+.btn-base {
+  @apply px-4 py-2 transition-colors duration-200;
+}
+
+.pomodoro-settings {
+  @apply w-20 text-center rounded bg-stone-900 light:bg-white 
+  light:text-stone-500 light:border-stone-300 border border-stone-700 
+  text-stone-100 focus:outline-none focus:ring-1 focus:ring-red-500;
 }
 
 /* Base app container (like TodoApp, PomodoroApp, etc.)
@@ -32,9 +51,6 @@ body {
     dark:bg-stone-800 dark:border-stone-600 dark:text-stone-100;
 }
 
-.btn-base {
-  @apply px-4 py-2 transition-colors duration-200;
-}
 
 
 .border-base {

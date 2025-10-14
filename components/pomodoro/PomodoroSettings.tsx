@@ -8,13 +8,16 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
   onChangeBreak,
 }) => {
   return (
-    <div className="flex flex-col gap-4 p-4 mt-4 rounded-md border-base bg-white dark:bg-stone-800 shadow-sm">
+    <div
+      className="flex flex-col gap-4 p-4 mt-4 rounded-md 
+      bg-stone-800 border border-stone-700 shadow-md transition-all light:bg-white light:border-stone-300"
+    >
       <div className="flex items-center justify-between">
         <label
           htmlFor="work-duration"
-          className="text-stone-700 dark:text-stone-200 font-medium"
+          className="text-stone-200 font-medium light:text-stone-500"
         >
-          Work Duration (min)
+          Work Duration <span className="text-red-500">(min)</span>
         </label>
         <input
           id="work-duration"
@@ -23,16 +26,16 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
           max={120}
           value={workDuration}
           onChange={(e) => onChangeWork(Number(e.target.value))}
-          className="input-base w-20 text-center rounded"
+          className="pomodoro-settings"
         />
       </div>
 
       <div className="flex items-center justify-between">
         <label
           htmlFor="break-duration"
-          className="text-stone-700 dark:text-stone-200 font-medium"
+          className="text-stone-200 font-medium light:text-stone-500"
         >
-          Break Duration (min)
+          Break Duration <span className="text-red-500">(min)</span>
         </label>
         <input
           id="break-duration"
@@ -41,7 +44,7 @@ const PomodoroSettings: React.FC<PomodoroSettingsProps> = ({
           max={60}
           value={breakDuration}
           onChange={(e) => onChangeBreak(Number(e.target.value))}
-          className="input-base w-20 text-center rounded"
+          className="pomodoro-settings"
         />
       </div>
     </div>
