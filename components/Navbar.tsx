@@ -4,32 +4,41 @@ import { Moon, Sun } from "lucide-react";
 import Calendar from "./calendar/Calendar";
 
 export default function Navigation() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
 
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
+    if (lightMode) {
+      document.documentElement.classList.add("light");
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove("light");
     }
-  }, [darkMode]);
+  }, [lightMode]);
 
   return (
-    <nav className="w-full bg-white/70 dark:bg-stone-900/70 backdrop-blur-sm shadow-sm transition-all">
-      <div className="flex items-center justify-between p-4 mx-auto max-w-5xl rounded-md">
-        <h1 className="text-lg font-semibold tracking-tight text-stone-900 dark:text-stone-100">
-          by Maurii.
+    <nav className="w-full backdrop-blur-sm shadow-sm transition-all bg-stone-900/70 light:bg-white/70">
+      <div className="grid grid-cols-3 items-center p-4 mx-auto max-w-5xl">
+        {/* Logo */}
+        <h1 className="justify-self-start text-xl font-semibold tracking-tight text-stone-100 light:text-stone-900">
+          by Maurii <span className="text-red-500">.</span>
         </h1>
-        <Calendar />
+
+        {/* Calendar Centered */}
+        <div className="justify-self-center">
+          <Calendar />
+        </div>
+
+        {/* Theme Toggle */}
         <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="p-2 rounded-md border border-gray-300 dark:border-stone-600 hover:bg-gray-100 dark:hover:bg-stone-800 transition-colors"
-          aria-label="Toggle dark mode"
+          onClick={() => setLightMode(!lightMode)}
+          aria-label="Toggle theme"
+          className="justify-self-end p-2 rounded-md border transition-colors 
+                 border-stone-700 light:border-gray-300 
+                 hover:bg-stone-800 light:hover:bg-gray-100"
         >
-          {darkMode ? (
-            <Sun size={18} className="text-red-500" />
+          {lightMode ? (
+            <Moon size={18} className="text-red-500" />
           ) : (
-            <Moon size={18} className="text-stone-700 dark:text-stone-200" />
+            <Sun size={18} className="text-red-500" />
           )}
         </button>
       </div>

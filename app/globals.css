@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-html {
-  color-scheme: dark;
-}
+@custom-variant light (&:where(.light, .light *));
 
 body {
-  @apply dark:bg-stone-950 dark:text-stone-100 
-  bg-gray-50 text-stone-900 
+  @apply bg-stone-950 text-stone-100 light:bg-stone-100 light:text-stone-950
   transition-colors duration-300;
 }
 
-/* Base app container (like TodoApp, PomodoroApp, etc.) */
+.text-muted {
+  @apply text-stone-400 light:text-stone-500;
+}
+
+.text-primary {
+  @apply text-stone-100 light:text-stone-900;
+}
+
+/* Base app container (like TodoApp, PomodoroApp, etc.)
 .app-container {
   @apply max-w-md mx-auto h-[500px] mt-10 p-6 
   rounded-md bg-white flex flex-col justify-center
@@ -23,18 +26,17 @@ body {
   @apply max-w-md mx-auto mt-10 p-6 rounded-md min-h-[300px] bg-white dark:bg-stone-900 shadow-md transition-all;
 }
 
-/* Shared input style */
+
 .input-base {
   @apply px-2 py-2 border border-gray-300 focus:outline-none focus:ring-0
     dark:bg-stone-800 dark:border-stone-600 dark:text-stone-100;
 }
 
-/* Shared button style */
 .btn-base {
   @apply px-4 py-2 transition-colors duration-200;
 }
 
-/* Shared border color logic */
+
 .border-base {
   @apply border border-gray-300 dark:border-stone-600;
-}
+} */

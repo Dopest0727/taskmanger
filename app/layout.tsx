@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "TaskManager",
-  description: "By Maurii",
+  description: "by Maurii.",
 };
 
 export default function RootLayout({
